@@ -195,17 +195,17 @@
         </div>
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-        {% for item in items %}
-          <div class="col-lg-6 menu-item {{ item.tag }}">
-            <img src="{{ item.image.url }}" class="menu-img" alt="Food Image">
-            <div class="menu-content">
-              <a href="#menu">{{ item.name }}</a><span>Rs. {{ item.price }}</span>
+          {% for item in items %}
+            <div class="col-lg-6 menu-item {{ item.tag }}">
+              <img src="{{ item.image.url }}" class="menu-img" alt="Food Image">
+              <div class="menu-content">
+                <a href="#menu">{{ item.name }}</a><span>Rs. {{ item.price }}</span>
+              </div>
+              <div class="menu-ingredients">
+                {{ item.small_desc|safe }}
+              </div>
             </div>
-            <div class="menu-ingredients">
-              {{ item.small_desc }}
-            </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
         </div>
 
       </div>
