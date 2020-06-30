@@ -14,7 +14,6 @@ class Booktable(models.Model):
     def __str__(self):
         return 'Table booked by ' + self.name + ' for ' + self.count + ' people. '
 
-## Food Items model
 class FoodItem(models.Model):
     name = models.CharField(max_length = 50)
     small_desc = models.TextField()
