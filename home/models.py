@@ -15,11 +15,11 @@ class Booktable(models.Model):
         return 'Table booked by ' + self.name + ' for ' + self.count + ' people. '
 
 class FoodItem(models.Model):
-    name = models.CharField(max_length = 50)
+    name  = models.CharField(max_length = 50)
     small_desc = models.TextField()
     large_desc = models.TextField()
     price = models.IntegerField()
-    image = models.ImageField(upload_to='main_app/images', default='')
+    image = models.ImageField(upload_to='home/images', default='')
     tag = models.CharField(max_length = 20)
     # special = models.BooleanField()
 

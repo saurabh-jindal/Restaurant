@@ -124,7 +124,7 @@ MESSAGE_TAGS = {
 if DEBUG:
     AWS_ACCESS_KEY_ID = 'AKIAUMNLCCDOAJ7K2YDE'
     AWS_SECRET_ACCESS_KEY = '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'
-    AWS_STORAGE_BUCKET_NAME = 'jready-static'
+    AWS_STORAGE_BUCKET_NAME = 'restaurant-static'
     AWS_DEFAULT_ACL = 'public-read'
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
