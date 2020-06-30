@@ -6,10 +6,8 @@ from django.contrib import messages
 
 def index(request):
     items = FoodItem.objects.all()
-    specials = Special.objects.all()
     context = {
         'items':items,
-        'specials':specials,
     }
     return render(request, 'home/index.html', context)
 
