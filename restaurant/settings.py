@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -118,14 +119,31 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR : 'danger',
 }
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+if DEBUG:
+    AWS_ACCESS_KEY_ID = 'AKIAUMNLCCDOAJ7K2YDE'
+    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_STORAGE_BUCKET_NAME = 'jready-static'
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_STORAGE = 'restaurant.storage_backends.StaticStorage'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'restaurant.storage_backends.PublicMediaStorage'
+else:
+    STATIC_URL = 'static'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_URL = 'media'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 
 django_heroku.settings(locals())
